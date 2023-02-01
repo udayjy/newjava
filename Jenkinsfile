@@ -58,13 +58,27 @@ pipeline{
                     
                 }
             }
-            stage('Quality Gate Status'){
+            stage('nexus repo store'){
                 
                 steps{
                     
                     script{
                         
-                        waitForQualityGate abortPipeline: false, credentialsId: 'git'
+                          nexusArtifactUploader artifacts: 
+                              [
+                                  [
+                                      artifactId: 'springboot', 
+                                      classifier: '', file: 'target/Uber.jar', 
+                                      type: 'jar'
+                                  ]
+                              ], 
+                              credentialsId: 'nexus', 
+                              groupId: 'com.example', 
+                              nexusUrl: '15.168.60.148:8081', 
+                              nexusVersion: 'nexus2', 
+                              protocol: 'http', 
+                              repository: 'release', 
+                              version: '1.0.0'
                     }
                 }
             }
