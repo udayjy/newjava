@@ -71,7 +71,7 @@ pipeline{
                                     classifier: '', file: 'target/Uber.jar', type: 'jar'
                                 ]
                               ], 
-                              credentialsId: 'admin', 
+                              credentialsId: 'nexus', 
                               groupId: 'com.example', 
                               nexusUrl: '15.168.60.148:8081', 
                               nexusVersion: 'nexus2', 
